@@ -1,18 +1,20 @@
 package org.firstinspires.ftc.teamcode.dcs15815;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class ProductionBotArm extends DefenderBotSystem {
 
-    public DcMotor tiltMotor;
-    public DcMotor extendMotor;
+    private DcMotorEx tiltMotor;
+    private DcMotor extendMotor;
 
     ProductionBotArm(HardwareMap hm, DefenderBotConfiguration config, DefenderBot b) {
 	   super(hm, config, b);
 
-	   tiltMotor = hm.dcMotor.get(configString("ARM_TILT_MOTOR_NAME"));
+	   tiltMotor = hm.get(DcMotorEx.class, configString("ARM_TILT_MOTOR_NAME"));
 	   tiltMotor.setDirection(configMotorDirection("ARM_TILT_MOTOR_DIRECTION"));
+	   tiltMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
 	   extendMotor = hm.dcMotor.get(configString("ARM_EXTEND_MOTOR_NAME"));
 	   extendMotor.setDirection(configMotorDirection("ARM_EXTEND_MOTOR_DIRECTION"));
@@ -21,7 +23,8 @@ public class ProductionBotArm extends DefenderBotSystem {
 // ----------------------------------------
 
     public void setTiltMotorPower(double p) {
-	   tiltMotor.setPower(p);
+	   tiltMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        tiltMotor.setPower(p);
     }
 
     public void setTiltMotorPowerByRatio(double r) {
@@ -71,6 +74,15 @@ public class ProductionBotArm extends DefenderBotSystem {
         setTiltMotorPowerByRatio(-r);
     }
 
+    public void holdPosition() {
+	   int currentPosition = tiltMotor.getCurrentPosition();
+//	   bot.telemetry.addData("position", currentPosition);
+//	   bot.telemetry.update();
+	   tiltMotor.setTargetPosition(currentPosition);
+	   tiltMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+	   tiltMotor.setVelocity(configInt("ARM_TILT_VELOCITY_MAX"));
+    }
+
 // ----------------------------------------
 
     public void extend() {
@@ -86,7 +98,7 @@ public class ProductionBotArm extends DefenderBotSystem {
     }
 
     public void retract(double r) {
-	   setExtendMotorPowerByRatio(r);
+	   setExtendMotorPowerByRatio(-r);
     }
 
 

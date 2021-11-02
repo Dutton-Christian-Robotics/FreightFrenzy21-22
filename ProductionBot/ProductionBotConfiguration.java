@@ -26,6 +26,7 @@ public class ProductionBotConfiguration extends DefenderBotConfiguration {
     public String ARM_TILT_MOTOR_NAME;
     public DcMotorSimple.Direction ARM_TILT_MOTOR_DIRECTION;
     public double ARM_TILT_POWER_MAX;
+    public int ARM_TILT_VELOCITY_MAX;
     public int ARM_TILT_POSITION_DOWN;
     public int ARM_TILT_POSITION_LEVEL;
     public int ARM_TILT_POSITION_UP;
@@ -36,6 +37,10 @@ public class ProductionBotConfiguration extends DefenderBotConfiguration {
     public int ARM_EXTEND_POSITION_IN;
     public int ARM_EXTEND_POSITION_OUT;
     public int ARM_EXTEND_POSITION_MAX;
+
+    public String CLAW_SERVO_NAME;
+    public double CLAW_POSITION_OPEN;
+    public double CLAW_POSITION_CLOSED;
 
 
 //    public String WOBBLEHAND_SERVO_NAME;
@@ -66,6 +71,9 @@ public class ProductionBotConfiguration extends DefenderBotConfiguration {
     public double NAVIGATION_WHEEL_RADIUS;
     public double NAVIGATION_INCHES_PER_TICK;
 
+    public String CAMERA_NAME;
+    public double VISION_THRESHOLD_DETECTION;
+
 //    public String VISION_TFOD_MODEL_ASSET;
 //    public String VISION_VUFORIA_KEY;
 
@@ -85,6 +93,7 @@ public class ProductionBotConfiguration extends DefenderBotConfiguration {
 	   ARM_TILT_MOTOR_NAME = "arm_tilt";
 	   ARM_TILT_MOTOR_DIRECTION = DcMotorSimple.Direction.REVERSE; //not sure if this is correct or not
 	   ARM_TILT_POWER_MAX = 1;
+	   ARM_TILT_VELOCITY_MAX = 900;
 	   ARM_TILT_POSITION_DOWN = 50;
 	   ARM_TILT_POSITION_LEVEL = 0;
 	   ARM_TILT_POSITION_UP = -29;
@@ -96,7 +105,9 @@ public class ProductionBotConfiguration extends DefenderBotConfiguration {
 	   ARM_EXTEND_POSITION_OUT = 661;
 	   ARM_EXTEND_POSITION_MAX = 1978;
 
-
+	   CLAW_SERVO_NAME = "claw";
+	   CLAW_POSITION_OPEN = 0.25;
+	   CLAW_POSITION_CLOSED = 0.6;
 
 
 
@@ -108,30 +119,12 @@ public class ProductionBotConfiguration extends DefenderBotConfiguration {
 //	   SHOOTER_SLEEP_AFTER_SPINUP = 1000;
 //	   SHOOTER_SLEEP_AFTER_RESET = 350;
 //
-//	   PUSHER_SERVO_NAME = "pusher";
-//	   PUSHER_POSITION_REST = 0.6;
-//	   PUSHER_SERVO_DIRECTION = Servo.Direction.FORWARD;
-//	   PUSHER_POSITION_SHOOT = 0.1;
-//
-//
-//	   WOBBLEARM_MOTOR_NAME = "wobble_arm";
-//	   WOBBLEARM_POSITION_GRAB = 70;
-//	   WOBBLEARM_POSITION_CARRY = 0;
-//	   WOBBLEARM_POWER_GRAB = 1;
-//	   WOBBLEARM_POWER_CARRY = 0.5;
-//	   WOBBLEARM_MOTOR_DIRECTION = DcMotorSimple.Direction.FORWARD;
-//
-//	   WOBBLEHAND_SERVO_NAME = "wobble_hand";
-//	   WOBBLEHAND_SERVO_DIRECTION = Servo.Direction.FORWARD;
-//	   WOBBLEHAND_POSITION_GRAB = 0.1;
-//	   WOBBLEHAND_POSITION_CARRY = 0.6;
-//
 //
 
 	   IMU_SENSOR_NAME = "imu";
 	   IMU_AXES_ORDER = AxesOrder.XYZ;
 
-	   NAVIGATION_POWER_DEFAULT = 0.42;
+	   NAVIGATION_POWER_DEFAULT = 0.65;
 	   NAVIGATION_TIMEOUT_DEFAULT = 10000;
 	   NAVIGATION_TOLERANCE_ROTATION = 0.3;
 	   NAVIGATION_TOLERANCE_X = 1.0;
@@ -141,6 +134,11 @@ public class ProductionBotConfiguration extends DefenderBotConfiguration {
 	   NAVIGATION_TICKS_PER_ROTATION = 280;
 	   NAVIGATION_WHEEL_RADIUS = 2; // 4 inches diameter
 	   NAVIGATION_INCHES_PER_TICK = (2 * Math.PI * NAVIGATION_GEAR_RATIO * NAVIGATION_WHEEL_RADIUS) / NAVIGATION_TICKS_PER_ROTATION;;
+
+	   CAMERA_NAME = "Webcam 1";
+	   VISION_THRESHOLD_DETECTION = 18;
+
+
 
 //	   VISION_TFOD_MODEL_ASSET = "UltimateGoal.tflite";
 //	   VISION_VUFORIA_KEY = "";
