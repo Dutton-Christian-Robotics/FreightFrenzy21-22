@@ -19,9 +19,19 @@ public class ProductionBotMecanumDrivetrain extends DefenderBotDrivetrain {
 	   frontRight = hm.dcMotor.get(configString("DRIVETRAIN_FRONTRIGHT_MOTOR_NAME"));
 	   backRight = hm.dcMotor.get(configString("DRIVETRAIN_BACKRIGHT_MOTOR_NAME"));
 
-//        backRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+	   resetEncoders();
+    }
 
+    public void resetEncoders() {
+	   backLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+	   frontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+	   frontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+	   backRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
+	   backLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+	   frontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+	   frontRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+	   backRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
 
     public void setPower(double bl, double fl, double fr, double br) {

@@ -16,7 +16,7 @@ public class TealColorRangePipeline extends OpenCvPipeline {
     static final Point REGION3_TOPLEFT_ANCHOR_POINT = new Point(212, 0);
 
     static final int REGION_WIDTH = 107;
-    static final int REGION_HEIGHT = 120;
+    static final int REGION_HEIGHT = 239;
 
     Point region1_pointA = new Point(
 		  REGION1_TOPLEFT_ANCHOR_POINT.x,

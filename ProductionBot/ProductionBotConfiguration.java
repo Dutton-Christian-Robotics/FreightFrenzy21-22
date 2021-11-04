@@ -11,18 +11,6 @@ public class ProductionBotConfiguration extends DefenderBotConfiguration {
 
     public double DRIVETRAIN_POWER_MAX;
 
-//    public String SHOOTER_MOTOR_NAME;
-//    public String PUSHER_SERVO_NAME;
-//    public DcMotorSimple.Direction SHOOTER_MOTOR_DIRECTION;
-//    public double SHOOTER_POWER_MAX;
-//    public double[] SHOOTER_POWER_LEVELS;
-//    public Servo.Direction PUSHER_SERVO_DIRECTION;
-//    public double PUSHER_POSITION_REST;
-//    public double PUSHER_POSITION_SHOOT;
-//    public long SHOOTER_SLEEP_AFTER_SPINUP;
-//    public long SHOOTER_SLEEP_AFTER_PUSH;
-//    public long SHOOTER_SLEEP_AFTER_RESET;
-
     public String ARM_TILT_MOTOR_NAME;
     public DcMotorSimple.Direction ARM_TILT_MOTOR_DIRECTION;
     public double ARM_TILT_POWER_MAX;
@@ -34,6 +22,7 @@ public class ProductionBotConfiguration extends DefenderBotConfiguration {
     public String ARM_EXTEND_MOTOR_NAME;
     public DcMotorSimple.Direction ARM_EXTEND_MOTOR_DIRECTION;
     public double ARM_EXTEND_POWER_MAX;
+    public int ARM_EXTEND_VELOCITY_MAX;
     public int ARM_EXTEND_POSITION_IN;
     public int ARM_EXTEND_POSITION_OUT;
     public int ARM_EXTEND_POSITION_MAX;
@@ -41,18 +30,6 @@ public class ProductionBotConfiguration extends DefenderBotConfiguration {
     public String CLAW_SERVO_NAME;
     public double CLAW_POSITION_OPEN;
     public double CLAW_POSITION_CLOSED;
-
-
-//    public String WOBBLEHAND_SERVO_NAME;
-//    public Servo.Direction WOBBLEHAND_SERVO_DIRECTION;
-//    public int WOBBLEARM_POSITION_GRAB;
-//    public double WOBBLEARM_POWER_GRAB;
-//    public DcMotorSimple.Direction WOBBLEARM_MOTOR_DIRECTION;
-//    public int WOBBLEARM_POSITION_CARRY;
-//    public double WOBBLEARM_POWER_CARRY;
-//    public double WOBBLEHAND_POSITION_GRAB;
-//    public double WOBBLEHAND_POSITION_CARRY;
-
 
     public String SPINNER_MOTOR_NAME;
     public DcMotorSimple.Direction SPINNER_MOTOR_DIRECTION;
@@ -74,10 +51,6 @@ public class ProductionBotConfiguration extends DefenderBotConfiguration {
     public String CAMERA_NAME;
     public double VISION_THRESHOLD_DETECTION;
 
-//    public String VISION_TFOD_MODEL_ASSET;
-//    public String VISION_VUFORIA_KEY;
-
-
     ProductionBotConfiguration() {
 	   super();
 	   DRIVETRAIN_BACKLEFT_MOTOR_NAME = "back_left";
@@ -87,11 +60,11 @@ public class ProductionBotConfiguration extends DefenderBotConfiguration {
 	   DRIVETRAIN_POWER_MAX = 1.0;
 
 	   SPINNER_MOTOR_NAME = "spinner";
-	   SPINNER_MOTOR_DIRECTION = DcMotorSimple.Direction.REVERSE; //not sure if this is correct or not
+	   SPINNER_MOTOR_DIRECTION = DcMotorSimple.Direction.REVERSE;
 	   SPINNER_MOTOR_POWER_MAX = 1;
 
 	   ARM_TILT_MOTOR_NAME = "arm_tilt";
-	   ARM_TILT_MOTOR_DIRECTION = DcMotorSimple.Direction.REVERSE; //not sure if this is correct or not
+	   ARM_TILT_MOTOR_DIRECTION = DcMotorSimple.Direction.REVERSE;
 	   ARM_TILT_POWER_MAX = 1;
 	   ARM_TILT_VELOCITY_MAX = 900;
 	   ARM_TILT_POSITION_DOWN = 50;
@@ -99,27 +72,16 @@ public class ProductionBotConfiguration extends DefenderBotConfiguration {
 	   ARM_TILT_POSITION_UP = -29;
 
 	   ARM_EXTEND_MOTOR_NAME = "arm_extend";
-	   ARM_EXTEND_MOTOR_DIRECTION = DcMotorSimple.Direction.FORWARD; //not sure if this is correct or not
+	   ARM_EXTEND_MOTOR_DIRECTION = DcMotorSimple.Direction.FORWARD;
 	   ARM_EXTEND_POWER_MAX = 1;
+	   ARM_EXTEND_VELOCITY_MAX = 900;
 	   ARM_EXTEND_POSITION_IN = 0;
 	   ARM_EXTEND_POSITION_OUT = 661;
 	   ARM_EXTEND_POSITION_MAX = 1978;
 
 	   CLAW_SERVO_NAME = "claw";
-	   CLAW_POSITION_OPEN = 0.25;
-	   CLAW_POSITION_CLOSED = 0.6;
-
-
-
-//	   SHOOTER_MOTOR_NAME = "shooter";
-//	   SHOOTER_MOTOR_DIRECTION = DcMotorSimple.Direction.REVERSE;
-//	   SHOOTER_POWER_MAX = 1;
-//	   SHOOTER_POWER_LEVELS = new double[]{1, 0.75, 0.65, 0.55};
-//	   SHOOTER_SLEEP_AFTER_PUSH = 450;
-//	   SHOOTER_SLEEP_AFTER_SPINUP = 1000;
-//	   SHOOTER_SLEEP_AFTER_RESET = 350;
-//
-//
+	   CLAW_POSITION_OPEN = 0.15;
+	   CLAW_POSITION_CLOSED = 0.8;
 
 	   IMU_SENSOR_NAME = "imu";
 	   IMU_AXES_ORDER = AxesOrder.XYZ;
@@ -137,11 +99,6 @@ public class ProductionBotConfiguration extends DefenderBotConfiguration {
 
 	   CAMERA_NAME = "Webcam 1";
 	   VISION_THRESHOLD_DETECTION = 18;
-
-
-
-//	   VISION_TFOD_MODEL_ASSET = "UltimateGoal.tflite";
-//	   VISION_VUFORIA_KEY = "";
 
 
 	   for (Field f : ProductionBotConfiguration.class.getDeclaredFields()) {

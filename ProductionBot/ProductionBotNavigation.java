@@ -90,6 +90,10 @@ public class ProductionBotNavigation extends DefenderBotSystem {
 
     }
 
+    public void comeToHeading(double angle, double powerRatio) {
+	   comeToHeading(angle, powerRatio * configDouble("NAVIGATION_POWER_DEFAULT"), configDouble("NAVIGATION_TOLERANCE_ROTATION"), configLong("NAVIGATION_TIMEOUT_DEFAULT"));
+    }
+
     public void comeToHeading(double angle) {
 	   comeToHeading(angle, configDouble("NAVIGATION_POWER_DEFAULT"), configDouble("NAVIGATION_TOLERANCE_ROTATION"), configLong("NAVIGATION_TIMEOUT_DEFAULT"));
     }
@@ -193,6 +197,19 @@ public class ProductionBotNavigation extends DefenderBotSystem {
 
     public void driveToRelativePosition(double dX, double dY) {
 	   driveToPosition(getCurrentPosition().relativePosition(dX, dY));
+    }
+
+    public void driveToRelativePosition(double dX, double dY, double heading) {
+//	   driveToPosition(getCurrentPosition().relativePosition(dX, dY), heading);
+    }
+
+    public void resetPositionTracking() {
+	   ((ProductionBotMecanumDrivetrain)bot.drivetrain).resetEncoders();
+    }
+
+    public void resetAndDriveToPosition(double x, double y) {
+        resetPositionTracking();
+        driveToPosition(x, y);
     }
 
 

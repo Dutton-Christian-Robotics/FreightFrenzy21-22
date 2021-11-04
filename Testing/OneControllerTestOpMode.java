@@ -69,16 +69,18 @@ public class OneControllerTestOpMode extends LinearOpMode
 			if (gamepad1.x) {
 			    if (bot.vision.knowsBarcodePosition()) {
 				   telemetry.addData("position", bot.vision.barcodePosition());
-				   telemetry.addData("confidence", bot.vision.barcodeConfidence());
+
 			    } else {
 				   telemetry.addData("barcode", "NOT FOUND");
 			    }
 			}
-		    telemetry.addData("Back Left", ((ProductionBotMecanumDrivetrain)bot.drivetrain).backLeft.getCurrentPosition());
-			telemetry.addData("Front Left", ((ProductionBotMecanumDrivetrain)bot.drivetrain).frontLeft.getCurrentPosition());
-		    telemetry.addData("Front Right", ((ProductionBotMecanumDrivetrain)bot.drivetrain).frontRight.getCurrentPosition());
-		    telemetry.addData("Back Right", ((ProductionBotMecanumDrivetrain)bot.drivetrain).backRight.getCurrentPosition());
-			telemetry.update();
+//		    telemetry.addData("Back Left", ((ProductionBotMecanumDrivetrain)bot.drivetrain).backLeft.getCurrentPosition());
+//			telemetry.addData("Front Left", ((ProductionBotMecanumDrivetrain)bot.drivetrain).frontLeft.getCurrentPosition());
+//		    telemetry.addData("Front Right", ((ProductionBotMecanumDrivetrain)bot.drivetrain).frontRight.getCurrentPosition());
+//		    telemetry.addData("Back Right", ((ProductionBotMecanumDrivetrain)bot.drivetrain).backRight.getCurrentPosition());
+		    telemetry.addData("tilt", bot.arm.getTiltMotorPosition());
+		    telemetry.addData("extend", bot.arm.getExtendMotorPosition());
+			 telemetry.update();
 
 
 		}

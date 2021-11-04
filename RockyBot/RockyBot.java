@@ -11,7 +11,7 @@ public class RockyBot extends DefenderBot {
 	RockyBot(HardwareMap hm, Class configClass, Telemetry t) {
 		super(hm, configClass, t);
 		drivetrain = addSystem(RockyBotMecanumDrivetrain.class);
-		vision = addSystem(VisionSystem.class);
+		vision = addSystem(ProductionBotVision.class);
 		
 //		sensors = addSystem(RockyBotSensors.class);
 //		navigation = addSystem(RockyBotNavigation.class);

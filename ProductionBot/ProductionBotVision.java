@@ -11,7 +11,7 @@ import org.openftc.easyopencv.OpenCvWebcam;
 
 public class ProductionBotVision extends DefenderBotSystem {
 	OpenCvWebcam webcam;
-	TealColorRangePipeline pipeline;
+	TealContourPipeline pipeline;
 	private int _barcodePosition = -1;
 	
 	
@@ -19,7 +19,7 @@ public class ProductionBotVision extends DefenderBotSystem {
 		super(hm, config, b);
 		int cameraMonitorViewId = hm.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hm.appContext.getPackageName());
 		webcam = OpenCvCameraFactory.getInstance().createWebcam(hm.get(WebcamName.class, configString("CAMERA_NAME")), cameraMonitorViewId);
-		pipeline = new TealColorRangePipeline();
+		pipeline = new TealContourPipeline();
 		webcam.setPipeline(pipeline);
 		webcam.setMillisecondsPermissionTimeout(2500); // Timeout for obtaining permission is configurable. Set before opening.
 		webcam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
@@ -41,16 +41,12 @@ public class ProductionBotVision extends DefenderBotSystem {
 	    return barcodePosition() > 0;
 	}
 	public int barcodePosition() {
-	    if (pipeline.barcodeConfidence >= configInt("VISION_THRESHOLD_DETECTION")) {
-		   _barcodePosition = pipeline.barcodePosition;
-	    } else {
-	        _barcodePosition = -1;
-	    }
+	    _barcodePosition = pipeline.barcodePosition;
 	    return _barcodePosition;
 	}
-    public int barcodeConfidence() {
-	   return pipeline.barcodeConfidence;
-    }
+//    public int barcodeConfidence() {
+//	   return pipeline.barcodeConfidence;
+//    }
 //	public double detectionZ() { return pipeline.z; }
 	
 
